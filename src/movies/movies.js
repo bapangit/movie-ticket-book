@@ -10,9 +10,12 @@ router.post("/add-movie", async (req, res) => {
         name,
       }).save();
       res.status(200).json({ message: "successful." });
+    } else {
+      throw new Error("movie name is missing.");
     }
   } catch (error) {
-    res.status(500).json({ error: "Failed!" });
+    console.log(error);
+    res.status(500).json({ error: "Failed!", message: error.message });
   }
 });
 

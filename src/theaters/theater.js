@@ -11,6 +11,8 @@ router.post("/add-theater", async (req, res) => {
         place,
       }).save();
       res.status(200).json({ message: "successful." });
+    } else {
+      throw new Error("Enter required fields.");
     }
   } catch (error) {
     res.status(500).json({ error: "Failed!" });
@@ -28,6 +30,8 @@ router.post("/add-show", async (req, res) => {
         { $push: { shows: showName } }
       );
       res.status(200).json({ message: "Successful." });
+    } else {
+      throw new Error("Enter required fields.");
     }
   } catch (error) {
     console.log(error);
